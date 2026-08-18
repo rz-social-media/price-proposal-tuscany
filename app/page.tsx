@@ -227,7 +227,7 @@ export default function Home() {
               <a href="#next-steps">{copy.nav[2]}</a>
             </div>
             <div className="language-switcher" role="group" aria-label={copy.languageLabel}>
-              {(["en", "it", "es"] as Language[]).map((code) => (
+              {(["it", "en", "es"] as Language[]).map((code) => (
                 <button key={code} type="button" className={language === code ? "active" : ""} onClick={() => setLanguage(code)} aria-pressed={language === code}>
                   {code.toUpperCase()}
                 </button>
