@@ -30,7 +30,7 @@ const translations = {
     weekendTitle: ["Three days,", "one visual language."],
     days: [
       { date: "Thursday · October 8", title: "Pasta, hands in the dough" },
-      { date: "Friday · October 9", title: "Pizza, tomatoes & celebration" },
+      { date: "Friday · October 9", title: "Pizza & a red-and-white celebration" },
       { date: "Saturday · October 10", title: "The wedding day" },
     ],
     priceTitle: "PRICE LIST",
@@ -82,7 +82,7 @@ const translations = {
     weekendTitle: ["Tre giorni,", "un solo linguaggio visivo."],
     days: [
       { date: "Giovedì · 8 ottobre", title: "Pasta, le mani in pasta" },
-      { date: "Venerdì · 9 ottobre", title: "Pizza, pomodori e festa" },
+      { date: "Venerdì · 9 ottobre", title: "Pizza e festa in bianco e rosso" },
       { date: "Sabato · 10 ottobre", title: "Il giorno delle nozze" },
     ],
     priceTitle: "LISTINO PREZZI",
@@ -134,7 +134,7 @@ const translations = {
     weekendTitle: ["Tres días,", "un solo lenguaje visual."],
     days: [
       { date: "Jueves · 8 de octubre", title: "Pasta, manos en la masa" },
-      { date: "Viernes · 9 de octubre", title: "Pizza, tomates y celebración" },
+      { date: "Viernes · 9 de octubre", title: "Pizza y celebración en blanco y rojo" },
       { date: "Sábado · 10 de octubre", title: "El día de la boda" },
     ],
     priceTitle: "LISTA DE PRECIOS",

@@ -4,6 +4,26 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "La Torre di Celle | Content Partnership Proposal",
   description: "A cinematic content partnership for a wedding weekend in Tuscany.",
+  openGraph: {
+    type: "website",
+    url: "https://rz-social-media.github.io/price-proposal-tuscany/",
+    title: "La Torre di Celle | Content Partnership Proposal",
+    description: "A cinematic content partnership for a wedding weekend in Tuscany.",
+    images: [
+      {
+        url: "https://rz-social-media.github.io/price-proposal-tuscany/images/vision-board.png",
+        width: 755,
+        height: 921,
+        alt: "La Torre di Celle wedding vision board",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "La Torre di Celle | Content Partnership Proposal",
+    description: "A cinematic content partnership for a wedding weekend in Tuscany.",
+    images: ["https://rz-social-media.github.io/price-proposal-tuscany/images/vision-board.png"],
+  },
 };
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
