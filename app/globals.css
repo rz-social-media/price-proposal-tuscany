@@ -89,4 +89,5 @@
 .language-switcher button{appearance:none;border:0;background:transparent;color:var(--white);font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.1em;line-height:1;min-width:35px;padding:8px 9px;border-radius:999px;cursor:pointer;opacity:.62;transition:background .25s,opacity .25s}
 .language-switcher button:hover{opacity:1}
 .language-switcher button.active{background:var(--white);color:var(--deep);opacity:1}
+.intro.dark{background:var(--deep)}
 @media(max-width:800px){.nav{justify-content:flex-end;padding:24px 6vw}.nav-mark{display:none}.nav-right{gap:0}.language-switcher button{min-width:34px;padding:8px}.hero-content{padding-top:88px}}
