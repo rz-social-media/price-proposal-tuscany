@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     "A cinematic content proposal for La Torre di Celle, Tuscany, October 8 to 10, 2026.",
 };
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const asset = (path: string) => `${publicBasePath}${path}`;
+
 const days = [
   {
     number: "01",
@@ -48,7 +51,7 @@ export default function Home() {
           <h1>La Torre<br /><em>di Celle</em></h1>
           <p className="hero-date">08 TO 10 OCTOBER 2026</p>
           </div>
-          <figure className="hero-board"><img src="/images/vision-board.png" alt="La Torre di Celle Tuscan wedding vision board" /></figure>
+          <figure className="hero-board"><img src={asset("/images/vision-board.png")} alt="La Torre di Celle Tuscan wedding vision board" /></figure>
           <a className="scroll-cue" href="#intro">Enter the story <span>↓</span></a>
         </div>
       </header>
@@ -74,7 +77,7 @@ export default function Home() {
         <div className="day-grid">
           {days.map((day) => (
             <article className="day-card" key={day.number}>
-              <div className="day-image" style={{ backgroundImage: `url(${day.image})` }} />
+              <div className="day-image" style={{ backgroundImage: `url(${asset(day.image)})` }} />
               <div className="day-overlay" />
               <div className="day-card-content">
                 <span className="day-number">{day.number}</span>
@@ -93,7 +96,7 @@ export default function Home() {
         </div>
         <div className="cards">
           <article className="card">
-            <img className="crest" src="/images/key-burgundy.png" alt="" loading="lazy" decoding="async" />
+            <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
             <div className="pkg-en">Wedding Weekend</div>
             <div className="amount"><span className="now"><small>€</small>2,000</span></div>
             <ul className="package-summary">
@@ -114,7 +117,7 @@ export default function Home() {
             <div className="option-coverage">October 8 to 10, 2026</div>
           </article>
           <article className="card">
-            <img className="crest" src="/images/key-burgundy.png" alt="" loading="lazy" decoding="async" />
+            <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
             <div className="pkg-en">Partner Shoot</div>
             <div className="amount"><span className="now"><small>€</small>1,500 to 3,000</span></div>
             <ul className="package-summary">
