@@ -181,7 +181,7 @@ const dayImages = [
 ];
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("it");
   const copy = translations[language];
 
   useEffect(() => {
@@ -191,11 +191,15 @@ export default function Home() {
   const renderPackage = (
     packageCopy: PackageCopy,
     price: string,
+    originalPrice?: string,
   ) => (
     <article className="card">
       <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
       <div className="pkg-en">{packageCopy.title}</div>
-      <div className="amount"><span className="now"><small>€</small>{price}</span></div>
+      <div className="amount">
+        {originalPrice && <span className="was">€{originalPrice}</span>}
+        <span className="now"><small>€</small>{price}</span>
+      </div>
       <ul className="package-summary">
         <li><b>{packageCopy.coverageLabel}</b> {packageCopy.coverage}</li>
         <li><b>{packageCopy.includesLabel}</b></li>
@@ -282,12 +286,15 @@ export default function Home() {
           <div className="ornament" aria-hidden="true"><i /></div>
         </div>
         <div className="cards">
-          {renderPackage(copy.weddingPackage, "2,000")}
+          {renderPackage(copy.weddingPackage, "2,000", "3,000")}
           {renderPackage(copy.partnerPackage, "1,500 to 3,000")}
         </div>
       </section>
 
       <section className="next-steps" id="next-steps">
+        <div className="mobile-transition-image" aria-hidden="true">
+          <img src={asset("/images/final-bride.webp")} alt="" loading="lazy" decoding="async" />
+        </div>
         <p className="eyebrow">{copy.nextEyebrow}</p>
         <h2>{copy.nextTitle[0]}<br /><em>{copy.nextTitle[1]}</em></h2>
         <p className="next-copy">{copy.nextBody}</p>

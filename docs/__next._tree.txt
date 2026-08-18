@@ -1,5 +1,5 @@
-:HL["/price-proposal-tuscany/_next/static/chunks/0luo94ies4qh..css","style"]
+:HL["/price-proposal-tuscany/_next/static/chunks/0xbuqsgciwbz7.css","style"]
 :HL["/price-proposal-tuscany/fonts/assistant-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
 :HL["/price-proposal-tuscany/fonts/cormorant-garamond-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
 :HL["/price-proposal-tuscany/fonts/cormorant-garamond-italic-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"XyQc_Q2WeOukCEZobyYpJ"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"zc7FrWFF1iBkOOfyYZ_Ql"}

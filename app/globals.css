@@ -59,6 +59,7 @@
 .price-section .card .pkg-en{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;line-height:1.2;letter-spacing:.06em;text-transform:uppercase;color:#62171a;text-align:center;margin-bottom:2px}
 .price-section .card .amount{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:14px 0 6px}
 .price-section .card .amount .now{font-family:'Assistant','Cormorant Garamond',sans-serif;font-weight:700;font-size:2.3rem;line-height:1;color:#62171a;letter-spacing:.01em}
+.price-section .card .amount .was{font-family:'Assistant','Cormorant Garamond',sans-serif;font-size:1.25rem;font-weight:300;color:#8c8179;text-decoration:line-through;text-decoration-thickness:1px}
 .price-section .card .amount .now small{font-size:1.05rem;font-weight:600;margin-inline-end:5px}
 .price-section .card ul{list-style:none;margin:18px 0 14px;width:100%}
 .price-section .card li{font-family:'Assistant','Cormorant Garamond',sans-serif;font-weight:300;font-size:.95rem;text-align:center;padding:9px 0;border-top:1px solid rgba(55,43,30,.10);color:#372b1e;line-height:1.7}
@@ -90,4 +91,5 @@
 .language-switcher button:hover{opacity:1}
 .language-switcher button.active{background:var(--white);color:var(--deep);opacity:1}
 .intro.dark{background:var(--deep)}
-@media(max-width:800px){.nav{justify-content:flex-end;padding:24px 6vw}.nav-mark{display:none}.nav-right{gap:0}.language-switcher button{min-width:34px;padding:8px}.hero-content{padding-top:88px}}
+.mobile-transition-image{display:none}
+@media(max-width:800px){.nav{justify-content:flex-end;padding:24px 6vw}.nav-mark{display:none}.nav-right{gap:0}.language-switcher button{min-width:34px;padding:8px}.hero{height:auto;min-height:0}.hero-content{height:auto;min-height:0;padding:88px 7vw 42px}.hero-board{margin-bottom:0}.mobile-transition-image{display:block;width:100%;aspect-ratio:.82;overflow:hidden;margin:0 auto 52px;background:var(--paper)}.mobile-transition-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 46%}}
