@@ -32,6 +32,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it">
       <head>
+        <link rel="icon" type="image/png" sizes="32x32" href={`${publicBasePath}/favicon-32.png`} />
+        <link rel="apple-touch-icon" sizes="180x180" href={`${publicBasePath}/apple-touch-icon.png`} />
+        <link rel="preload" href={`${publicBasePath}/images/key-cream.png`} as="image" fetchPriority="high" />
         <link rel="preload" href={`${publicBasePath}/fonts/assistant-latin.woff2`} as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href={`${publicBasePath}/fonts/cormorant-garamond-latin.woff2`} as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href={`${publicBasePath}/fonts/cormorant-garamond-italic-latin.woff2`} as="font" type="font/woff2" crossOrigin="anonymous" />

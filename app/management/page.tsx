@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SiteEffects from "../site-effects";
 
 type Language = "en" | "it" | "es";
 type PackageCopy = {
@@ -176,6 +177,7 @@ export default function Management() {
 
   return (
     <main>
+      <SiteEffects preload={["/images/mood-000.jpg", "/images/vision-board.png", ...dayImages]} />
       <header className="hero" id="top">
         <div className="hero-image" />
         <div className="hero-shade" />
@@ -210,11 +212,11 @@ export default function Management() {
 
       <section className="intro dark" id="intro">
         <div className="section-grid intro-grid">
-          <div>
+          <div className="reveal">
             <p className="eyebrow">{copy.introEyebrow}</p>
             <h2>{copy.introTitle[0]}<br /><span>{copy.introTitle[1]}</span></h2>
           </div>
-          <div className="intro-copy">
+          <div className="intro-copy reveal d1">
             <p className="lead">{copy.introLead}</p>
             <p>{copy.introBody}</p>
           </div>
@@ -222,13 +224,13 @@ export default function Management() {
       </section>
 
       <section className="weekend" id="weekend">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <p className="eyebrow">{copy.weekendEyebrow}</p>
           <h2>{copy.weekendTitle[0]}<br />{copy.weekendTitle[1]}</h2>
         </div>
         <div className="day-grid">
           {copy.days.map((day, index) => (
-            <article className="day-card" key={day.date}>
+            <article className={`day-card reveal${index > 0 ? ` d${index}` : ""}`} key={day.date}>
               <div className="day-image" style={{ backgroundImage: `url(${asset(dayImages[index])})` }} />
               <div className="day-overlay" />
               <div className="day-card-content">
@@ -242,22 +244,22 @@ export default function Management() {
       </section>
 
       <section className="price-section" id="proposal">
-        <div className="price-head">
+        <div className="price-head reveal">
           <h2>{copy.priceTitle}</h2>
           <div className="ornament" aria-hidden="true"><i /></div>
         </div>
-        <div className="cards">
+        <div className="cards reveal d1">
           {renderPackage(copy.weddingPackage, "1,000", undefined, monthSuffix)}
         </div>
       </section>
 
       <section className="next-steps" id="next-steps">
-        <div className="mobile-transition-image" aria-hidden="true">
+        <div className="mobile-transition-image reveal" aria-hidden="true">
           <img src={asset("/images/final-bride.webp")} alt="" loading="lazy" decoding="async" />
         </div>
-        <p className="eyebrow">{copy.nextEyebrow}</p>
-        <h2>{copy.nextTitle[0]}<br /><em>{copy.nextTitle[1]}</em></h2>
-        <p className="next-copy">{copy.nextBody}</p>
+        <p className="eyebrow reveal">{copy.nextEyebrow}</p>
+        <h2 className="reveal d1">{copy.nextTitle[0]}<br /><em>{copy.nextTitle[1]}</em></h2>
+        <p className="next-copy reveal d2">{copy.nextBody}</p>
       </section>
 
       <footer><span>RZ / LA TORRE DI CELLE</span><span>{copy.footer}</span></footer>

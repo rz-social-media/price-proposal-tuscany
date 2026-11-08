@@ -1,5 +1,6 @@
-:HL["/price-proposal-tuscany/_next/static/chunks/0d1bu0byx0tkd.css","style"]
+:HL["/price-proposal-tuscany/_next/static/chunks/0pq8fg.3b3_i-.css","style"]
+:HL["/price-proposal-tuscany/images/key-cream.png","image",{"fetchPriority":"high"}]
 :HL["/price-proposal-tuscany/fonts/assistant-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
 :HL["/price-proposal-tuscany/fonts/cormorant-garamond-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
 :HL["/price-proposal-tuscany/fonts/cormorant-garamond-italic-latin.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"pfbMHwDvSk201-ykAKS7J"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"Ensprpw1e7ir6SEKLjkSh"}

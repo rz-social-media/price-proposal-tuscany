@@ -93,3 +93,27 @@
 .intro.dark{background:var(--deep)}
 .mobile-transition-image{display:none}
 @media(max-width:800px){.nav{justify-content:flex-end;padding:24px 6vw}.nav-mark{display:none}.nav-right{gap:0}.language-switcher button{min-width:34px;padding:8px}.hero{height:auto;min-height:0}.hero-content{height:auto;min-height:0;padding:88px 7vw 42px}.hero-board{margin-bottom:0}.mobile-transition-image{display:block;width:100%;aspect-ratio:.82;overflow:hidden;margin:0 auto 52px;background:var(--paper)}.mobile-transition-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 46%}}
+
+/* Functional behaviors ported from europe-package-catalog */
+.hero-loader{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;background:var(--deep);transition:opacity .9s}
+.hero-loader.done{opacity:0;pointer-events:none}
+.hero-loader .lk{aspect-ratio:559/1000;width:58px;opacity:.92}
+.hero-loader .bar{width:170px;height:2px;background:#f2ece333;overflow:hidden}
+.hero-loader .bar span{display:block;height:100%;background:var(--beige);transition:width .25s}
+.hero-loader .pct{font-family:var(--serif);letter-spacing:3px;color:#f2ece3b3;font-size:.78rem}
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}
+.reveal.d2{transition-delay:.24s}
+.reveal.d3{transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){.reveal{transition:none;transform:none;opacity:1}.hero-loader{transition:none}}
+.nav{position:fixed;transition:background .4s,padding .4s,box-shadow .4s,color .4s}
+.nav.scrolled{background:#fffbf8f5;box-shadow:0 1px 0 #372b1e1a;padding:14px 5.5vw;color:#372b1e}
+.nav.scrolled .nav-mark{border-color:#62171a59;color:#62171a}
+.nav.scrolled .language-switcher{border-color:#62171a3d;background:#62171a12;backdrop-filter:none}
+.nav.scrolled .language-switcher button{color:#62171a}
+.nav.scrolled .language-switcher button.active{background:#62171a;color:#fffaf5}
+.nav-links a{position:relative;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;bottom:0;right:0;width:0;height:1px;background:currentColor;transition:width .35s}
+.nav-links a:hover::after{width:100%}
+@media (max-width:800px){.nav.scrolled{padding:14px 6vw}}
