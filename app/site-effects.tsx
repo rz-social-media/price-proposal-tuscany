@@ -72,8 +72,15 @@ export default function SiteEffects({ preload }: { preload: readonly string[] })
       },
       { threshold: 0.12, rootMargin: "0px 0px -4% 0px" },
     );
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const watch = () =>
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => observer.observe(el));
+    watch();
+    const mutations = new MutationObserver(watch);
+    mutations.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      mutations.disconnect();
+      observer.disconnect();
+    };
   }, [done]);
 
   if (gone) return null;
