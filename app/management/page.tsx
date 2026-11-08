@@ -133,9 +133,9 @@ const translations = {
 } as const;
 
 const dayImages = [
-  "/images/villa.webp",
-  "/images/events.webp",
-  "/images/mood-004.jpg",
+  "/images/pasta-workshop.jpg",
+  "/images/pizza-evening.jpg",
+  "/images/wedding-day.jpg",
 ];
 
 export default function Management() {
