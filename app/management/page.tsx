@@ -174,10 +174,10 @@ const translations = {
   },
 } as const;
 
-const areaMedia = [
-  { video: "/videos/area-weddings.mp4", poster: "/images/area-weddings.jpg" },
-  { video: "/videos/area-content.mp4", poster: "/images/area-content.jpg" },
-  { video: "/videos/area-marketing.mp4", poster: "/images/area-marketing.jpg" },
+const areaImages = [
+  "/images/area-weddings.jpg",
+  "/images/area-content.jpg",
+  "/images/area-marketing.jpg",
 ];
 
 export default function Management() {
@@ -190,7 +190,7 @@ export default function Management() {
 
   return (
     <main>
-      <SiteEffects preload={["/images/mood-000.jpg", "/images/vision-board.png", ...areaMedia.map((m) => m.poster)]} />
+      <SiteEffects preload={["/images/mood-000.jpg", "/images/vision-board.png", ...areaImages]} />
       <header className="hero" id="top">
         <div className="hero-image" />
         <div className="hero-shade" />
@@ -244,15 +244,11 @@ export default function Management() {
         <div className="day-grid area-grid">
           {copy.areas.map((area, index) => (
             <article className={`day-card area-card reveal${index > 0 ? ` d${index}` : ""}`} key={area.title}>
-              <video
+              <img
                 className="day-video"
-                src={asset(areaMedia[index].video)}
-                poster={asset(areaMedia[index].poster)}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
+                src={asset(areaImages[index])}
+                alt=""
+                loading="lazy"
               />
               <div className="day-overlay" />
               <div className="day-card-content">
@@ -278,6 +274,7 @@ export default function Management() {
             <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
             <div className="pkg-en">{copy.packageTitle}</div>
             <div className="amount">
+              <span className="was">€1,500</span>
               <span className="now"><small>€</small>1,000<small> {copy.monthSuffix}</small></span>
             </div>
             <ul className="package-summary">
