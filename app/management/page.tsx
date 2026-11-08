@@ -2,141 +2,182 @@
 
 import { useEffect, useState } from "react";
 import SiteEffects from "../site-effects";
+import StoriesSection from "./stories";
 
 type Language = "en" | "it" | "es";
-type PackageCopy = {
-  title: string;
-  coverageLabel: string;
-  coverage: string;
-  includesLabel: string;
-  items: readonly string[];
-  note: string;
-};
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${publicBasePath}${path}`;
 
 const translations = {
   en: {
-    nav: ["The rhythm", "The proposal", "Next steps"],
+    nav: ["Our approach", "The proposal", "Next steps"],
     languageLabel: "Choose language",
     brandLine: "RZ social media · The House of Content Creation",
     date: "ONGOING INSTAGRAM MANAGEMENT",
     enter: "Enter the story",
-    introEyebrow: "The story continues",
-    introTitle: ["One wedding.", "A living page."],
-    introLead: "Your wedding weekend proved what La Torre di Celle can be on screen: a place people save, share and dream about.",
-    introBody: "This proposal turns that moment into a rhythm. We manage your Instagram page end to end — curating the feed, shaping the Highlights, and publishing content that speaks directly to the couples you want to attract for the seasons ahead.",
-    weekendEyebrow: "A year on the page",
-    weekendTitle: ["Every season,", "one visual language."],
-    days: [
-      { date: "Winter · off-season", title: "A calm, steady presence" },
-      { date: "Summer · wedding season", title: "The page comes alive" },
-      { date: "All year round", title: "Creative & marketing direction" },
+    introEyebrow: "Continuing our work together",
+    introTitle: ["Showcase the experience.", "Attract the right couples."],
+    introLead: "Following the content we created for your wedding weekend, we will continue developing an Instagram page that showcases La Torre di Celle as a venue for weddings and the experiences surrounding them.",
+    introBody: "Through ongoing management and content from your archive and new events, our aim is to attract couples who appreciate the venue and are interested in the range of services you offer.",
+    areasEyebrow: "Our approach",
+    areasTitle: ["What we showcase.", "How we publish.", "Who we reach."],
+    areas: [
+      {
+        subtitle: "The venue and its experiences",
+        title: "Weddings and everything around them",
+        description: "Showcase weddings, pasta masterclasses, and pizza nights to help couples understand what a full wedding weekend at your venue could include.",
+      },
+      {
+        subtitle: "Content management",
+        title: "From your archive to regular publishing",
+        description: "Select and edit existing and new material into Reels, posts, and Stories, while organizing the feed and Highlights to introduce the venue clearly.",
+      },
+      {
+        subtitle: "Marketing direction",
+        title: "Help couples take the next step",
+        description: "Address prospective couples’ questions, explain your services, and include clear invitations to enquire about the venue and available dates.",
+      },
     ],
-    priceTitle: "PRICE LIST",
-    weddingPackage: {
-      title: "Monthly Management",
-      coverageLabel: "Coverage:",
-      coverage: "Full remote management of the La Torre di Celle Instagram page",
-      includesLabel: "Package includes:",
-      items: [
-        "End-to-end page management: feed curation, Highlights structure, scheduling of posts and Stories",
-        "Winter rhythm: one dedicated Stories drop per week and a feed post every week or two, based on the available archive",
-        "Summer rhythm: two to three Stories drops per week and one feed post per week, scaling as fresh content flows in",
-        "Editing and publishing of content from your archive and from the photographers of events held at the venue",
-        "Creative and marketing direction focused on attracting high-intent couples for weddings and venue experiences",
-        "A publishing plan reviewed together as the seasons and the content library evolve",
-      ],
-      note: "On-site production visits are quoted separately per trip",
-    },
-    nextEyebrow: "The next chapter",
-    nextTitle: ["Let’s make every month", "look like October."],
-    nextBody: "The wedding weekend showed what this place can say in three days. Now we give it a voice all year long — so every couple who finds the page already knows they have found their place.",
+    priceTitle: "MANAGEMENT PROPOSAL",
+    monthSuffix: "/ month",
+    packageTitle: "Instagram & Content Management",
+    coverageLabel: "Scope:",
+    coverage: "Remote content management for La Torre di Celle’s Instagram account, focused on weddings and related experiences.",
+    includesLabel: "The package includes:",
+    items: [
+      "Content planning: choose topics and services to promote and build a publishing calendar around the season and the venue’s activities.",
+      "Editing and preparation: use material from your archive and event photographers, including editing, caption writing, and adaptation into Reels, carousels, and Stories.",
+      "Profile organization: plan the feed’s visual presentation and organize Highlights around weddings, experiences, and venue services.",
+      "Winter publishing: one dedicated Stories series per week and one feed post every one to two weeks, depending on available material.",
+      "Summer publishing: two to three Stories series per week and one feed post per week, depending on available material.",
+      "Ongoing refinement: review content performance and feedback from enquiries together, using these insights to adjust future topics and posts.",
+      "Audience interaction: respond to content-related comments and general messages, such as compliments on posts and reactions to Stories.",
+    ],
+    notes: [
+      "Feed posts may take the form of Reels, carousels, or individual images, depending on the material and the purpose of each post.",
+      "Business enquiries — including availability, pricing, quotations, and event bookings — remain your responsibility. These enquiries will be directed to you for follow-up.",
+      "On-site filming and content production visits are quoted separately for each trip.",
+    ],
+    nextEyebrow: "Next steps",
+    nextTitle: ["Start with your content.", "Build the first publishing plan."],
+    nextBody: "During our next call, we will identify the services and events to prioritize, review your available content, and agree on how materials will be shared and posts approved. We will then use this to build the first month’s publishing plan.",
     footer: "Content creation · Social media · Wedding stories",
   },
   it: {
-    nav: ["Il ritmo", "La proposta", "Prossimi passi"],
+    nav: ["Il nostro approccio", "La proposta", "Prossimi passi"],
     languageLabel: "Scegli la lingua",
     brandLine: "RZ social media · La casa della creazione di contenuti",
     date: "GESTIONE CONTINUATIVA DI INSTAGRAM",
     enter: "Entra nella storia",
-    introEyebrow: "La storia continua",
-    introTitle: ["Un matrimonio.", "Una pagina viva."],
-    introLead: "Il vostro weekend di nozze ha dimostrato cosa può essere La Torre di Celle sullo schermo: un luogo che le persone salvano, condividono e sognano.",
-    introBody: "Questa proposta trasforma quel momento in un ritmo. Gestiamo la vostra pagina Instagram dall'inizio alla fine — curando il feed, dando forma agli Highlights e pubblicando contenuti che parlano direttamente alle coppie che volete attrarre per le prossime stagioni.",
-    weekendEyebrow: "Un anno sulla pagina",
-    weekendTitle: ["Ogni stagione,", "un solo linguaggio visivo."],
-    days: [
-      { date: "Inverno · bassa stagione", title: "Una presenza calma e costante" },
-      { date: "Estate · stagione dei matrimoni", title: "La pagina prende vita" },
-      { date: "Tutto l'anno", title: "Direzione creativa e marketing" },
+    introEyebrow: "Il nostro lavoro insieme continua",
+    introTitle: ["Mostrare l'esperienza.", "Attrarre le coppie giuste."],
+    introLead: "Dopo i contenuti creati per il vostro weekend di nozze, continueremo a sviluppare una pagina Instagram che presenta La Torre di Celle come location per matrimoni e per le esperienze che li accompagnano.",
+    introBody: "Attraverso una gestione continuativa e contenuti provenienti dal vostro archivio e dai nuovi eventi, il nostro obiettivo è attrarre coppie che apprezzano la location e sono interessate alla gamma di servizi che offrite.",
+    areasEyebrow: "Il nostro approccio",
+    areasTitle: ["Cosa mostriamo.", "Come pubblichiamo.", "Chi raggiungiamo."],
+    areas: [
+      {
+        subtitle: "La location e le sue esperienze",
+        title: "I matrimoni e tutto ciò che li circonda",
+        description: "Mostriamo matrimoni, masterclass di pasta e serate pizza per aiutare le coppie a capire cosa può includere un intero weekend di nozze nella vostra location.",
+      },
+      {
+        subtitle: "Gestione dei contenuti",
+        title: "Dal vostro archivio a una pubblicazione regolare",
+        description: "Selezioniamo e montiamo materiale esistente e nuovo in Reel, post e Storie, organizzando il feed e gli Highlights per presentare la location con chiarezza.",
+      },
+      {
+        subtitle: "Direzione marketing",
+        title: "Aiutare le coppie a fare il passo successivo",
+        description: "Rispondiamo alle domande delle coppie interessate, spieghiamo i vostri servizi e includiamo inviti chiari a chiedere informazioni sulla location e sulle date disponibili.",
+      },
     ],
-    priceTitle: "LISTINO PREZZI",
-    weddingPackage: {
-      title: "Gestione mensile",
-      coverageLabel: "Copertura:",
-      coverage: "Gestione completa da remoto della pagina Instagram di La Torre di Celle",
-      includesLabel: "Il pacchetto comprende:",
-      items: [
-        "Gestione completa della pagina: cura del feed, struttura degli Highlights, programmazione di post e Storie",
-        "Ritmo invernale: un drop di Storie dedicato a settimana e un post nel feed ogni una o due settimane, in base all'archivio disponibile",
-        "Ritmo estivo: da due a tre drop di Storie a settimana e un post nel feed a settimana, crescendo con l'arrivo di nuovi contenuti",
-        "Editing e pubblicazione dei contenuti del vostro archivio e dei fotografi degli eventi ospitati nella location",
-        "Direzione creativa e di marketing orientata ad attrarre coppie di alto profilo per matrimoni ed esperienze nella location",
-        "Un piano editoriale rivisto insieme man mano che le stagioni e la libreria di contenuti evolvono",
-      ],
-      note: "Le trasferte di produzione in loco vengono quotate separatamente per ogni viaggio",
-    },
-    nextEyebrow: "Il prossimo capitolo",
-    nextTitle: ["Facciamo che ogni mese", "somigli a ottobre."],
-    nextBody: "Il weekend di nozze ha mostrato cosa può raccontare questo luogo in tre giorni. Ora gli diamo una voce per tutto l'anno — così ogni coppia che trova la pagina sa già di aver trovato il proprio posto.",
+    priceTitle: "PROPOSTA DI GESTIONE",
+    monthSuffix: "/ mese",
+    packageTitle: "Gestione di Instagram e dei contenuti",
+    coverageLabel: "Ambito:",
+    coverage: "Gestione da remoto dei contenuti dell'account Instagram di La Torre di Celle, con focus su matrimoni ed esperienze correlate.",
+    includesLabel: "Il pacchetto comprende:",
+    items: [
+      "Pianificazione dei contenuti: scegliamo i temi e i servizi da promuovere e costruiamo un calendario editoriale in base alla stagione e alle attività della location.",
+      "Montaggio e preparazione: utilizziamo materiale del vostro archivio e dei fotografi degli eventi, con montaggio, scrittura delle caption e adattamento in Reel, caroselli e Storie.",
+      "Organizzazione del profilo: progettiamo la presentazione visiva del feed e organizziamo gli Highlights intorno a matrimoni, esperienze e servizi della location.",
+      "Pubblicazione invernale: una serie di Storie dedicata a settimana e un post nel feed ogni una o due settimane, in base al materiale disponibile.",
+      "Pubblicazione estiva: da due a tre serie di Storie a settimana e un post nel feed a settimana, in base al materiale disponibile.",
+      "Perfezionamento continuo: esaminiamo insieme le performance dei contenuti e i riscontri dalle richieste ricevute, usando queste indicazioni per orientare temi e post futuri.",
+      "Interazione con il pubblico: rispondiamo ai commenti sui contenuti e ai messaggi generici, come i complimenti ai post e le reazioni alle Storie.",
+    ],
+    notes: [
+      "I post nel feed possono essere Reel, caroselli o immagini singole, in base al materiale e allo scopo di ogni pubblicazione.",
+      "Le richieste commerciali — disponibilità, prezzi, preventivi e prenotazioni di eventi — restano di vostra competenza e vi verranno inoltrate per il seguito.",
+      "Le trasferte di riprese e produzione di contenuti in loco vengono quotate separatamente per ogni viaggio.",
+    ],
+    nextEyebrow: "Prossimi passi",
+    nextTitle: ["Partiamo dai vostri contenuti.", "Costruiamo il primo piano editoriale."],
+    nextBody: "Nella nostra prossima call individueremo i servizi e gli eventi a cui dare priorità, esamineremo i contenuti disponibili e concorderemo come condividere i materiali e approvare le pubblicazioni. Su questa base costruiremo il piano editoriale del primo mese.",
     footer: "Creazione di contenuti · Social media · Storie di matrimonio",
   },
   es: {
-    nav: ["El ritmo", "La propuesta", "Próximos pasos"],
+    nav: ["Nuestro enfoque", "La propuesta", "Próximos pasos"],
     languageLabel: "Elegir idioma",
     brandLine: "RZ social media · La casa de la creación de contenido",
     date: "GESTIÓN CONTINUA DE INSTAGRAM",
     enter: "Entra en la historia",
-    introEyebrow: "La historia continúa",
-    introTitle: ["Una boda.", "Una página viva."],
-    introLead: "Vuestro fin de semana de boda demostró lo que La Torre di Celle puede ser en pantalla: un lugar que la gente guarda, comparte y sueña.",
-    introBody: "Esta propuesta convierte ese momento en un ritmo. Gestionamos vuestra página de Instagram de principio a fin — cuidando el feed, dando forma a los Highlights y publicando contenido que habla directamente a las parejas que queréis atraer para las próximas temporadas.",
-    weekendEyebrow: "Un año en la página",
-    weekendTitle: ["Cada temporada,", "un solo lenguaje visual."],
-    days: [
-      { date: "Invierno · temporada baja", title: "Una presencia serena y constante" },
-      { date: "Verano · temporada de bodas", title: "La página cobra vida" },
-      { date: "Todo el año", title: "Dirección creativa y de marketing" },
+    introEyebrow: "Continuamos nuestro trabajo juntos",
+    introTitle: ["Mostrar la experiencia.", "Atraer a las parejas adecuadas."],
+    introLead: "Tras el contenido que creamos para vuestro fin de semana de boda, seguiremos desarrollando una página de Instagram que muestre La Torre di Celle como un espacio para bodas y para las experiencias que las acompañan.",
+    introBody: "A través de la gestión continua y de contenido procedente de vuestro archivo y de nuevos eventos, nuestro objetivo es atraer a parejas que aprecien el lugar y se interesen por la gama de servicios que ofrecéis.",
+    areasEyebrow: "Nuestro enfoque",
+    areasTitle: ["Qué mostramos.", "Cómo publicamos.", "A quién llegamos."],
+    areas: [
+      {
+        subtitle: "El lugar y sus experiencias",
+        title: "Bodas y todo lo que las rodea",
+        description: "Mostramos bodas, masterclasses de pasta y noches de pizza para ayudar a las parejas a entender todo lo que puede incluir un fin de semana de boda completo en vuestro espacio.",
+      },
+      {
+        subtitle: "Gestión de contenido",
+        title: "De vuestro archivo a una publicación regular",
+        description: "Seleccionamos y editamos material existente y nuevo en Reels, posts y Stories, organizando el feed y los Highlights para presentar el lugar con claridad.",
+      },
+      {
+        subtitle: "Dirección de marketing",
+        title: "Ayudar a las parejas a dar el siguiente paso",
+        description: "Respondemos a las preguntas de las parejas interesadas, explicamos vuestros servicios e incluimos invitaciones claras a consultar por el lugar y las fechas disponibles.",
+      },
     ],
-    priceTitle: "LISTA DE PRECIOS",
-    weddingPackage: {
-      title: "Gestión mensual",
-      coverageLabel: "Cobertura:",
-      coverage: "Gestión completa en remoto de la página de Instagram de La Torre di Celle",
-      includesLabel: "El paquete incluye:",
-      items: [
-        "Gestión integral de la página: curación del feed, estructura de los Highlights, programación de posts y Stories",
-        "Ritmo de invierno: un drop de Stories dedicado por semana y un post en el feed cada una o dos semanas, según el archivo disponible",
-        "Ritmo de verano: de dos a tres drops de Stories por semana y un post en el feed semanal, creciendo a medida que llega contenido nuevo",
-        "Edición y publicación de contenido de vuestro archivo y de los fotógrafos de los eventos celebrados en el espacio",
-        "Dirección creativa y de marketing enfocada en atraer parejas de alto nivel para bodas y experiencias en el espacio",
-        "Un plan de publicación revisado juntas a medida que evolucionan las temporadas y la biblioteca de contenido",
-      ],
-      note: "Las visitas de producción in situ se presupuestan por separado para cada viaje",
-    },
-    nextEyebrow: "El próximo capítulo",
-    nextTitle: ["Hagamos que cada mes", "se parezca a octubre."],
-    nextBody: "El fin de semana de boda mostró lo que este lugar puede contar en tres días. Ahora le damos una voz durante todo el año — para que cada pareja que encuentre la página sepa que ya ha encontrado su lugar.",
+    priceTitle: "PROPUESTA DE GESTIÓN",
+    monthSuffix: "/ mes",
+    packageTitle: "Gestión de Instagram y de contenido",
+    coverageLabel: "Alcance:",
+    coverage: "Gestión remota del contenido de la cuenta de Instagram de La Torre di Celle, centrada en bodas y experiencias relacionadas.",
+    includesLabel: "El paquete incluye:",
+    items: [
+      "Planificación de contenido: elegimos los temas y servicios a promocionar y construimos un calendario de publicación en torno a la temporada y la actividad del lugar.",
+      "Edición y preparación: utilizamos material de vuestro archivo y de los fotógrafos de los eventos, incluyendo edición, redacción de captions y adaptación a Reels, carruseles y Stories.",
+      "Organización del perfil: planificamos la presentación visual del feed y organizamos los Highlights en torno a bodas, experiencias y servicios del lugar.",
+      "Publicación en invierno: una serie de Stories dedicada por semana y un post en el feed cada una o dos semanas, según el material disponible.",
+      "Publicación en verano: de dos a tres series de Stories por semana y un post en el feed semanal, según el material disponible.",
+      "Mejora continua: revisamos juntos el rendimiento del contenido y las respuestas a las consultas, y usamos esas conclusiones para ajustar los próximos temas y publicaciones.",
+      "Interacción con la audiencia: respondemos a comentarios sobre el contenido y a mensajes generales, como elogios a los posts y reacciones a las Stories.",
+    ],
+    notes: [
+      "Los posts del feed pueden ser Reels, carruseles o imágenes individuales, según el material y el objetivo de cada publicación.",
+      "Las consultas comerciales — disponibilidad, precios, presupuestos y reservas de eventos — siguen siendo vuestra responsabilidad y se os derivarán para su seguimiento.",
+      "Las visitas de rodaje y producción de contenido in situ se presupuestan por separado para cada viaje.",
+    ],
+    nextEyebrow: "Próximos pasos",
+    nextTitle: ["Empezamos con vuestro contenido.", "Construimos el primer plan de publicación."],
+    nextBody: "En nuestra próxima llamada identificaremos los servicios y eventos a priorizar, revisaremos el contenido disponible y acordaremos cómo se compartirá el material y cómo se aprobarán las publicaciones. Con eso construiremos el plan de publicación del primer mes.",
     footer: "Creación de contenido · Redes sociales · Historias de boda",
   },
 } as const;
 
-const dayImages = [
-  "/images/pasta-workshop.jpg",
-  "/images/pizza-evening.jpg",
-  "/images/wedding-day.jpg",
+const areaMedia = [
+  { video: "/videos/area-weddings.mp4", poster: "/images/area-weddings.jpg" },
+  { video: "/videos/area-content.mp4", poster: "/images/area-content.jpg" },
+  { video: "/videos/area-marketing.mp4", poster: "/images/area-marketing.jpg" },
 ];
 
 export default function Management() {
@@ -147,37 +188,9 @@ export default function Management() {
     document.documentElement.lang = language;
   }, [language]);
 
-  const renderPackage = (
-    packageCopy: PackageCopy,
-    price: string,
-    originalPrice?: string,
-    priceSuffix?: string,
-  ) => (
-    <article className="card">
-      <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
-      <div className="pkg-en">{packageCopy.title}</div>
-      <div className="amount">
-        {originalPrice && <span className="was">€{originalPrice}</span>}
-        <span className="now"><small>€</small>{price}{priceSuffix && <small> {priceSuffix}</small>}</span>
-      </div>
-      <ul className="package-summary">
-        <li><b>{packageCopy.coverageLabel}</b> {packageCopy.coverage}</li>
-        <li><b>{packageCopy.includesLabel}</b></li>
-      </ul>
-      <div className="package-detail">
-        <ul className="package-lines">
-          {packageCopy.items.map((item) => <li key={item}>{item}</li>)}
-        </ul>
-      </div>
-      <div className="option-coverage">{packageCopy.note}</div>
-    </article>
-  );
-
-  const monthSuffix = language === "es" ? "/ mes" : language === "it" ? "/ mese" : "/ month";
-
   return (
     <main>
-      <SiteEffects preload={["/images/mood-000.jpg", "/images/vision-board.png", ...dayImages]} />
+      <SiteEffects preload={["/images/mood-000.jpg", "/images/vision-board.png", ...areaMedia.map((m) => m.poster)]} />
       <header className="hero" id="top">
         <div className="hero-image" />
         <div className="hero-shade" />
@@ -225,31 +238,61 @@ export default function Management() {
 
       <section className="weekend" id="weekend">
         <div className="section-heading reveal">
-          <p className="eyebrow">{copy.weekendEyebrow}</p>
-          <h2>{copy.weekendTitle[0]}<br />{copy.weekendTitle[1]}</h2>
+          <p className="eyebrow">{copy.areasEyebrow}</p>
+          <h2>{copy.areasTitle[0]}<br />{copy.areasTitle[1]}<br />{copy.areasTitle[2]}</h2>
         </div>
-        <div className="day-grid">
-          {copy.days.map((day, index) => (
-            <article className={`day-card reveal${index > 0 ? ` d${index}` : ""}`} key={day.date}>
-              <div className="day-image" style={{ backgroundImage: `url(${asset(dayImages[index])})` }} />
+        <div className="day-grid area-grid">
+          {copy.areas.map((area, index) => (
+            <article className={`day-card area-card reveal${index > 0 ? ` d${index}` : ""}`} key={area.title}>
+              <video
+                className="day-video"
+                src={asset(areaMedia[index].video)}
+                poster={asset(areaMedia[index].poster)}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
               <div className="day-overlay" />
               <div className="day-card-content">
                 <span className="day-number">0{index + 1}</span>
-                <p className="day-date">{day.date}</p>
-                <h3>{day.title}</h3>
+                <p className="day-date">{area.subtitle}</p>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
+      <StoriesSection />
+
       <section className="price-section" id="proposal">
         <div className="price-head reveal">
           <h2>{copy.priceTitle}</h2>
           <div className="ornament" aria-hidden="true"><i /></div>
         </div>
-        <div className="cards reveal d1">
-          {renderPackage(copy.weddingPackage, "1,000", undefined, monthSuffix)}
+        <div className="cards cards-single reveal d1">
+          <article className="card card-wide">
+            <img className="crest" src={asset("/images/key-burgundy.png")} alt="" loading="lazy" decoding="async" />
+            <div className="pkg-en">{copy.packageTitle}</div>
+            <div className="amount">
+              <span className="now"><small>€</small>1,000<small> {copy.monthSuffix}</small></span>
+            </div>
+            <ul className="package-summary">
+              <li><b>{copy.coverageLabel}</b> {copy.coverage}</li>
+              <li><b>{copy.includesLabel}</b></li>
+            </ul>
+            <div className="package-detail">
+              <ul className="package-lines">
+                {copy.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+            <div className="package-notes">
+              {copy.notes.map((note) => <p className="option-coverage" key={note}>{note}</p>)}
+            </div>
+          </article>
         </div>
       </section>
 
