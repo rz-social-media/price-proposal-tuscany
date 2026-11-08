@@ -35,8 +35,8 @@ const translations = {
       },
       {
         subtitle: "Marketing direction",
-        title: "Help couples take the next step",
-        description: "Address prospective couples’ questions, explain your services, and include clear invitations to enquire about the venue and available dates.",
+        title: "Attract high-end couples",
+        description: "We lead the strategic and creative direction of the account, shaping content that positions La Torre di Celle as a premium destination and attracts quality couples with higher budgets.",
       },
     ],
     priceTitle: "MANAGEMENT PROPOSAL",
@@ -89,8 +89,8 @@ const translations = {
       },
       {
         subtitle: "Direzione marketing",
-        title: "Aiutare le coppie a fare il passo successivo",
-        description: "Rispondiamo alle domande delle coppie interessate, spieghiamo i vostri servizi e includiamo inviti chiari a chiedere informazioni sulla location e sulle date disponibili.",
+        title: "Attirare coppie di alto livello",
+        description: "Guidiamo la direzione strategica e creativa dell'account, creando contenuti che posizionano La Torre di Celle come destinazione premium e attraggono coppie di qualità con budget più alti.",
       },
     ],
     priceTitle: "PROPOSTA DI GESTIONE",
@@ -143,8 +143,8 @@ const translations = {
       },
       {
         subtitle: "Dirección de marketing",
-        title: "Ayudar a las parejas a dar el siguiente paso",
-        description: "Respondemos a las preguntas de las parejas interesadas, explicamos vuestros servicios e incluimos invitaciones claras a consultar por el lugar y las fechas disponibles.",
+        title: "Atraer a parejas de alto nivel",
+        description: "Lideramos la dirección estratégica y creativa de la cuenta, creando contenido que posiciona La Torre di Celle como un destino premium y atrae a parejas de calidad con presupuestos más altos.",
       },
     ],
     priceTitle: "PROPUESTA DE GESTIÓN",
